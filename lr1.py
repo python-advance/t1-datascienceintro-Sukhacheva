@@ -15,12 +15,12 @@ def sex_count(sex, data = None):
     
 male_numb = sex_count('male', data['Sex'] )
 female_numb = sex_count('female', data['Sex'])
-print("Ответ№1:" , male_numb, female_numb)
+print("количество мужчин: " , male_numb," и женщин: ", female_numb)
 
 # 2. Подсчитайте сколько пассажиров загрузилось на борт в различных портах? Приведите три числа через пробел.
 
 embarked_counts = data['Embarked'].value_counts()
-print("Ответ№2:" , embarked_counts['C'], embarked_counts['S'],embarked_counts['Q'])
+print("Число пассажиров, которое загрузилось в порту C :" , embarked_counts['C']," S : ", embarked_counts['S']," Q : ", embarked_counts['Q'])
 
 # 3. Посчитайте долю погибших на параходе (число и процент)?
 
@@ -35,7 +35,7 @@ def surv_count(survived, data = None):
     
 not_surv_numb = surv_count(0, data['Survived'])
 surv_percent = 100.0 * not_surv_numb / surv_counts.sum()
-print("Ответ№3:" ,not_surv_numb,"{:0.2f}".format(surv_percent))
+print("Доля погибших: " ,not_surv_numb,"{:0.2f}".format(surv_percent))
 
 # 4. Какие доли составляли пассажиры первого, второго, третьего класса?
 
@@ -58,7 +58,7 @@ def corr_Pirson(x, y):
     return res
 
 answer = corr_Pirson('SibSp','Parch' )
-print("Ответ№5:", "{:0.2f}".format(answer))
+print("коэффициент корреляции Пирсона между количеством супругов (SibSp) и количеством детей (Parch): ", "{:0.2f}".format(answer))
 
 # 6. Выясните есть ли корреляция (вычислите коэффициент корреляции Пирсона) между:
 # возрастом и параметром survival;
@@ -72,13 +72,13 @@ def corr_Pirson(x, y):
     return res
 
 answer = corr_Pirson('Age','Survived' )
-print("Ответ№6:", "{:0.2f}".format(answer))
+print("корреляция (вычислите коэффициент корреляции Пирсона) между возрастом и параметром survival: ", "{:0.2f}".format(answer))
 
 #answer = corr_Pirson('Sex','Survived' )
-#print("Ответ№5:", "{:0.2f}".format(answer))
+#print("Корреляция невозможна:", "{:0.2f}".format(answer))
 
 answer1 = corr_Pirson('Pclass','Survived' )
-print("Ответ№6:", "{:0.2f}".format(answer1))
+print("корреляция (вычислите коэффициент корреляции Пирсона) между классом, в котором пассажир ехал, и параметром survival: ", "{:0.2f}".format(answer1))
 
 # 7. Посчитайте средний возраст пассажиров и медиану.
 
@@ -88,7 +88,7 @@ def age(data = None):
     return np.average(age_lst), np.median(age_lst)
 age_int = age(data['Age'])
 
-print("Ответ№7:",age_int)
+print("средний возраст пассажиров и медиану:",age_int)
 
 # 8. Посчитайте среднюю цену за билет и медиану
 
@@ -98,7 +98,7 @@ def price(data = None):
     return np.average(price_lst),np.median(price_lst)
 price_int = price(data['Fare'])
 
-print("Ответ№8:",price_int)
+print("средняя цена за билет и медиану:",price_int)
 
 # 9. Какое самое популярное мужское имя на корабле?
 
@@ -122,7 +122,7 @@ def clean_name(name):
 
 names = data[data['Sex'] == 'male']['Name'].map(clean_name)
 name_counts = names.value_counts()
-print("Ответ№9:",name_counts.head(1).index.values[0])
+print("самое популярное мужское имя на корабле:",name_counts.head(1).index.values[0])
 
 # 10. Какие самые популярные мужское и женские имена людей, старше 15 лет на корабле?
 
@@ -159,7 +159,5 @@ def get_name(dataset,sex,age):
 
 
 print('\n')
-#Самое популярное мужское имя старше 15 лет
-print('Мужское: '+ get_name(data,'male',15))
-#Самое популярное женское имя старше 15 лет
-print('Женское: '+ get_name(data,'female',15))
+print('Самое популярное мужское имя старше 15 лет: '+ get_name(data,'male',15))
+print('ЖСамое популярное женское имя старше 15 лет: '+ get_name(data,'female',15))
